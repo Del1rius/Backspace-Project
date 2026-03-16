@@ -1,0 +1,38 @@
+from service import Service
+from client import Client
+from subscription import Subscription
+
+def add_service():
+    name = input("Service Name: ")
+    desc = input("Description: ")
+    price = input("Price: ")
+
+    try:
+        price = float(price)
+    except ValueError:
+        print("Price must be numeric!")
+        return
+    
+    s = Service(name, desc, price)
+    sid = s.save()
+    print(f"Service added with ID {sid}") if sid else None
+
+def view_service():
+    rows = Service.list_all()
+    if not rows:
+        print("No services found.")
+        return
+    for r in rows:
+        print(f"{r['service_id']}. {r['name']} - {r['description']} - R{r['price']:.2f}")
+
+def register_client():
+    name = input("Client Name: ")
+    company = input("Company: ")
+    email = input("Email: ")
+    phone = input("Phone: ")
+
+    c = Client(name, company, email, phone)
+    cid = c.save()
+    print(f"Client registered with ID {cid}") if cid else None
+    
+
