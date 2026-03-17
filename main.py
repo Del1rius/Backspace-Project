@@ -35,4 +35,21 @@ def register_client():
     cid = c.save()
     print(f"Client registered with ID {cid}") if cid else None
     
+def view_client():
+    rows = Client.list_all()
+
+    if not rows:
+        print("No clients found.")
+        return
+    for r in rows:
+        print(f"{r['client_id']}. {r['name']} - {r['company']} - {r['email']} - {r['phone']}")
+
+def activate_service():
+    try:
+        client_id = int(input("Client ID: "))
+        service_id = int(input("Service ID: "))
+    except ValueError:
+        print("ID's must be integers.")
+        return
+    Subscription.activate(client_id, service_id)
 
