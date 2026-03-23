@@ -53,3 +53,34 @@ def activate_service():
         return
     Subscription.activate(client_id, service_id)
 
+def main_menu():
+    while True:
+        print("\BACKSPACE TECHNOLOGIES SERVICE SYSTEM")
+        print("1. Add Service")
+        print("2. View Services")
+        print("3. Register Client")
+        print("4. View Client")
+        print("5. Activate Service")
+        print("6. Exit")
+        choice = input("Select an option (1-6): ").strip()
+
+        if choice == "1":
+            add_service()
+        elif choice == "2":
+            view_service()
+        elif choice == "3":
+            register_client()
+        elif choice == "4":
+            view_client()
+        elif choice == "5":
+            activate_service()
+        elif choice == "6":
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid Option choose between 1 and 6.")
+
+
+if __name__ == "__main__":
+    main_menu()
+
